@@ -10,6 +10,7 @@ def index(request):
 
 # create a about view
 def about(request):
-    return HttpResponse("Rango says here is the about page. <a href='/rango/'>Index</a>")
+    # we don't need a context dictionary here
+    return render(request, 'rango/about.html')
 
 
