@@ -11,7 +11,7 @@ def index(request):
     # Place the list in our context_dict dictionary (with our boldmessage!)
     # that will be passed to the template engine.
     category_list = Category.objects.order_by('-likes')[:5]
-    page_list = Page.objects.order_by('views')[:5]
+    page_list = Page.objects.order_by('-views')[:5]
 
     context_dict = {}
     # update the index() view
