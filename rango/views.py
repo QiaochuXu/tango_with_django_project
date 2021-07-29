@@ -2,6 +2,8 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from rango.models import Category
 from rango.models import Page
+from rango.forms import CategoryForm
+from django.shortcuts import redirect
 
 # create a index view
 def index(request):
@@ -58,3 +60,22 @@ def show_category(request, category_name_slug):
 
     # Go render the response and return it to the client.
     return render(request, 'rango/category.html', context=context_dict)
+
+def add_category(request):
+    form = CategoryForm()
+    # check if the http request is a post
+    if request.method == 'POST':
+        form = CategoryForm(request.POST)
+
+        # to check if we have been provided with a valid form
+        if form.is_valid():
+            # Save the new category to the database.
+            form.save(commit=True)
+            # redirect the user back to the index view
+            return redirect('/rango/')
+        else:
+            # The supplied form contained errors
+            # just print them to the terminal.
+            print(form.errors)
+    
+    return render(request, 'rango/add_category.html', {'form': form})
