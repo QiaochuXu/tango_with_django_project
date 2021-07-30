@@ -29,7 +29,7 @@ def about(request):
     context_dict = {}
     visitor_cookie_handler(request)
     context_dict['visits'] = request.session['visits']
-    return render(request, 'rango/index.html', context=context_dict)
+    return render(request, 'rango/about.html', context=context_dict)
 
 # create a new view show_category
 def show_category(request, category_name_slug):
