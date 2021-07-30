@@ -19,11 +19,18 @@ def index(request):
     context_dict['categories'] = category_list
     context_dict['pages'] = page_list
     
+    # Cookie tasting
+    request.session.set_test_cookie()
+
     # render the response and send it back
     return render(request, 'rango/index.html', context = context_dict)
 
 # create a about view
 def about(request):
+    if request.session.test_cookie_worked():
+        print("TEST COOKIE WORKED!")
+        request.session.delete_test_cookie()
+        
     # we don't need a context dictionary here
     return render(request, 'rango/about.html')
 
