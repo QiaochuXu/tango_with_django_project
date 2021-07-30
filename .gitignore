@@ -7,3 +7,4 @@ thumbs.db
 migrations/
 Thumbs.db
 profile_images/
+.vscode/
